@@ -9,7 +9,7 @@ import fs = require('fs');
 import http = require('http');
 import https = require('https');
 var logger = require('morgan');
-
+var compression = require('compression')
 var bodyParser = require('body-parser');
 
 var app = express();
@@ -24,7 +24,7 @@ app.set("port", port);
 // app.set('view engine', 'html');
 // app.use(bodyParser.json({ limit: '100mb' }));
 // app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
-
+app.use(compression());
 app.use(cookieParser());
 // var root = path.join(__dirname, '../../client/dist');
 // console.log(root);

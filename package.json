@@ -57,6 +57,7 @@
     "@types/ws": "0.0.41",
     "apn": "^2.2.0",
     "co": "^4.6.0",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.7.2",
     "excel-export-es6": "^1.0.13",
