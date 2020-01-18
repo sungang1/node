@@ -13,7 +13,7 @@ var compression = require('compression')
 var bodyParser = require('body-parser');
 
 var app = express();
-var port = process.env.PORT || 8080; // 3032
+var port = process.env.PORT || 8088; // 3032
 var cookieParser = require('cookie-parser');
 app.set("port", port);
 // app.use(MiddlewaresBase.configuration);
@@ -88,7 +88,7 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port);
-httpsServer.listen(8443);
+httpsServer.listen(80);
 console.log("Node app is running at localhost:" + port);
 
 // var job = new MyJob();
