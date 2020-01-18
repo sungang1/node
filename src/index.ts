@@ -13,7 +13,7 @@ var compression = require('compression')
 var bodyParser = require('body-parser');
 
 var app = express();
-var port = process.env.PORT || 80; // 3032
+var port = process.env.PORT || 8080; // 3032
 var cookieParser = require('cookie-parser');
 app.set("port", port);
 // app.use(MiddlewaresBase.configuration);
@@ -80,15 +80,15 @@ app.use(function (err, req, res, next) {
 
 // var privateKey = fs.readFileSync('e:\\MyWork\\mOAts\\mOAts\\server\\keys\\private.pem', 'utf8');
 // var certificate = fs.readFileSync('e:\\MyWork\\mOAts\\mOAts\\server\\keys\\file.crt', 'utf8');
-// var privateKey = fs.readFileSync(path.join(__dirname, '../keys/private.pem'), 'utf8');
-// var certificate = fs.readFileSync(path.join(__dirname, '../keys/file.crt'), 'utf8');
+var privateKey = fs.readFileSync(path.join(__dirname, '../keys/wfxytop.key'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, '../keys/wfxytop.crt'), 'utf8');
 
-// var credentials = { key: privateKey, cert: certificate };
+var credentials = { key: privateKey, cert: certificate };
 var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
+var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port);
-// httpsServer.listen(8443);
+httpsServer.listen(8443);
 console.log("Node app is running at localhost:" + port);
 
 // var job = new MyJob();
