@@ -88,7 +88,7 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port);
-httpsServer.listen(80);
+httpsServer.listen(8089);
 console.log("Node app is running at localhost:" + port);
 
 // var job = new MyJob();
