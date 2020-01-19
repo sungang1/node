@@ -84,11 +84,11 @@ var privateKey = fs.readFileSync(path.join(__dirname, '../keys/wfxytop.key'), 'u
 var certificate = fs.readFileSync(path.join(__dirname, '../keys/wfxytop.crt'), 'utf8');
 
 var credentials = { key: privateKey, cert: certificate };
-var httpServer = http.createServer(app);
+// var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(port);
-httpsServer.listen(80);
+// httpServer.listen(port);
+httpsServer.listen(port);
 console.log("Node app is running at localhost:" + port);
 
 // var job = new MyJob();
