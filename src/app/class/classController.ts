@@ -34,17 +34,22 @@ export class classController {
 
 
     setClass = (req: express.Request, res: express.Response) => {
-        let obj = req.body.content;
-        console.log(obj);
-        let sql = ` insert into content(KeyId,finshTime,modifyTime,content, tag) values('A00B00C00T0000',null,null,'${obj}',null);`;
-        query(sql, function (err, val, fied) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(val);
-                res.json({ error: '' })
-            }
-        })
+       
+       console.log(req.body);
+
+       
+       
+        // let obj = req.body.content;
+        // console.log(obj);
+        // let sql = ` insert into content(KeyId,finshTime,modifyTime,content, tag) values('A00B00C00T0000',null,null,'${obj}',null);`;
+        // query(sql, function (err, val, fied) {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         console.log(val);
+        //         res.json({ error: '' })
+        //     }
+        // })
     }
 
 
