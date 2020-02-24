@@ -12,10 +12,10 @@ var logger = require('morgan');
 var compression = require('compression')
 var bodyParser = require('body-parser');
 
-var app = express();
-var port = process.env.PORT || 8089; // 444
-var cookieParser = require('cookie-parser');
-app.set("port", port);
+// var app = express();
+// var port = process.env.PORT || 8089; // 444
+// var cookieParser = require('cookie-parser');
+// app.set("port", port);
 
 
 
@@ -32,8 +32,8 @@ app2.set("port", port2);
 // app.set('view engine', 'html');
 // app.use(bodyParser.json({ limit: '100mb' }));
 // app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
-app.use(compression());
-app.use(cookieParser());
+// app.use(compression());
+// app.use(cookieParser());
 
 app2.use(compression());
 app2.use(cookieParser());
@@ -49,15 +49,15 @@ app2.use(cookieParser());
 
 
 
-app.set('views', path.join(__dirname, 'views/pc'));
+// app.set('views', path.join(__dirname, 'views/pc'));
 
 
 app2.set('views', path.join(__dirname, 'views/app'));
 
 // console.log( path.join(__dirname, 'views/Hello'));
-app.engine('html', ejs.__express);
-app.set('view engine', 'html');
-app.use(logger('dev'));
+// app.engine('html', ejs.__express);
+// app.set('view engine', 'html');
+// app.use(logger('dev'));
 
 
 app2.engine('html', ejs.__express);
@@ -66,10 +66,10 @@ app2.use(logger('dev'));
 
 
 // 限制文件大小
-app.use(bodyParser.json({ limit: '100mb' }));
-app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser.json({ limit: '100mb' }));
+// app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
 
 
 app2.use(bodyParser.json({ limit: '100mb' }));
@@ -81,20 +81,20 @@ app2.use(express.urlencoded({ extended: false }));
 
 // app.use(cookieParser('sessionuse'));
 //这是判断是选择终端的
-app.use(express.static(path.join(__dirname, 'views/pc')));
+// app.use(express.static(path.join(__dirname, 'views/pc')));
 
 app2.use(express.static(path.join(__dirname, 'views/app')));
 // console.log('w',path.join(__dirname, 'views/Hello'));
 //生产环境中去掉
-app.use(function (req, res, next) {
-    console.log(req.url);
+// app.use(function (req, res, next) {
+//     console.log(req.url);
 
-    // if (req.connection.remoteAddress.toString() == "::1") {
-    // res.setHeader('Access-Control-Allow-Origin', '*');
-    // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    // }
-    next();
-});
+//     // if (req.connection.remoteAddress.toString() == "::1") {
+//     // res.setHeader('Access-Control-Allow-Origin', '*');
+//     // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     // }
+//     next();
+// });
 
 
 app2.use(function (req, res, next) {
@@ -110,13 +110,13 @@ app2.use(function (req, res, next) {
 
 
 
-app.use(BaseRoutes);
+// app.use(BaseRoutes);
 
-app.use(function (err, req, res, next) {
+// app.use(function (err, req, res, next) {
   
-    res.status(err.status || 500);
-    res.send('出错了！' + err.status);
-});
+//     res.status(err.status || 500);
+//     res.send('出错了！' + err.status);
+// });
 
 
 
@@ -144,10 +144,10 @@ app2.use(function (err, req, res, next) {
 // var certificate = fs.readFileSync(path.join(__dirname, '../keys/wfxytop.crt'), 'utf8');
 
 // var credentials = { key: privateKey, cert: certificate };
- var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
+//  var httpServer = http.createServer(app);
+// // var httpsServer = https.createServer(credentials, app);
 
- httpServer.listen(port);
+//  httpServer.listen(port);
 
 
  var httpServer2 = http.createServer(app2);
@@ -157,7 +157,7 @@ app2.use(function (err, req, res, next) {
 
 
 // httpsServer.listen(port);
-console.log("Node app is running at localhost:" + port);
+console.log("Node app is running at localhost:" + port2);
 
 // var job = new MyJob();
 // job.do();
