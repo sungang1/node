@@ -17,16 +17,16 @@ export class zhihu {
 
    // 添加表
    list_add_db_table=(req: express.Request, res: express.Response)=>{
-
-      let name=req.body.name;
-      let url=req.body.url;
+   
+      let name=req.body.name==""?"null":req.body.name;
+      let url=req.body.url==""?"null":req.body.url;
       let record_time= this.DateFormat(req.body.record_time) ;
-      let py_time=this.DateFormat(req.body.py_time) ;
-      let item_num=req.body.item_num;
-      let data_table_name=req.body.data_table_name;
-      let comment=req.body.comment;
+      let py_time= this.DateFormat(req.body.py_time) ;
+      let item_num=req.body.item_num==""?0:req.body.item_num;
+      let data_table_name=req.body.data_table_name==""?"null":req.body.data_table_name;
+      let comment=req.body.comment==req.body.comment?"null":req.body.comment;
       let sql = `insert into zhihu_table_list(name,url,record_time,py_time,item_num,data_table_name,comment) values('${name}','${url}','${record_time}','${py_time}','${item_num}','${data_table_name}','${comment}');`;
-      console.log(req.body);
+      
       query(sql, function (err, val, fied) {
          if (err) {
             res.json({ error: err })
