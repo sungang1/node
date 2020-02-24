@@ -22,7 +22,7 @@ var bodyParser = require('body-parser');
 
 var app2 = express();
 var port2 = process.env.PORT || 8099; // 444
-var cookieParser = require('cookie-parser');
+// var cookieParser = require('cookie-parser');
 app2.set("port", port2);
 // app.use(MiddlewaresBase.configuration);
 // app.use(bodyParser.json());
@@ -36,7 +36,7 @@ app2.set("port", port2);
 // app.use(cookieParser());
 
 app2.use(compression());
-app2.use(cookieParser());
+// app2.use(cookieParser());
 
 
 // var root = path.join(__dirname, '../../client/dist');
