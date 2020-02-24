@@ -93,5 +93,11 @@ export class zhihu {
    // }
 
  
+list_db=(req: express.Request, res: express.Response)=>{
+   
+}
+
+
+
 
 }

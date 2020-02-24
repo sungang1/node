@@ -17,6 +17,7 @@ export class  zhihuRoutes {
         // router.get('/output', controller.Output);
      router.post('/list_add_db_table',controller.list_add_db_table);
 
+     router.get('/list_db',controller.list_db)
 
 
         return router;
