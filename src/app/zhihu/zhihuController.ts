@@ -26,7 +26,7 @@ export class zhihu {
       let data_table_name=req.body.data_table_name;
       let comment=req.body.comment;
       let sql = `insert into zhihu_table_list(name,url,record_time,py_time,item_num,data_table_name,comment) values('${name}','${url}','${record_time}','${py_time}','${item_num}','${data_table_name}','${comment}');`;
-      
+      console.log(req.body);
       query(sql, function (err, val, fied) {
          if (err) {
             res.json({ error: err })
