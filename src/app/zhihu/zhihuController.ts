@@ -11,10 +11,6 @@ export class zhihu {
    let date=new Date(dates);
    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
  }
-
-
-
-
    // 添加表
    list_add_db_table=(req: express.Request, res: express.Response)=>{
    
@@ -38,10 +34,48 @@ export class zhihu {
 
 // 删除表
    list_del_db_table=(req: express.Request, res: express.Response)=>{
+     let type=req.body.type;
+     let sqlStr;
+     if(type=='id'){
+      sqlStr=`delete from zhihu_table_list where id=${Number(req.body.id)}`
+     }else if(type=='dbName') {
+       sqlStr=`delete from zhihu_table_list where data_table_name=${req.body.dbName}`
+     }
+     query(sqlStr, function (err, val, fied) {
+      if (err) {
+         res.json({ error: err })
+      }else{
+         res.json({"error":""})
+      }
+   })
 
 
    }
   
+
+
+// 所有数据库列表
+
+
+   list_db=(req: express.Request, res: express.Response)=>{
+     let limit=req.query.limit;
+     let offset=req.query.offset;
+  
+
+      let sql=`select * from zhihu_table_list where id>${offset} limit ${limit} `;
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         }else{
+            res.json({"error":"","data":val})
+         }
+      })
+   }
+   
+
+
+
+
 // 修改表
    list_update_db_table=(req: express.Request, res: express.Response)=>{
 
@@ -52,6 +86,37 @@ export class zhihu {
 
 // 发现表
    list_find_db_table=(req: express.Request, res: express.Response)=>{
+      let id= req.query.id;
+      let sql=`select * from zhihu_table_list where id=${id}`;
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         }else{
+            res.json({"error":"","data":val})
+         }
+      })
+
+   }
+
+
+   // 查找详细的数据表
+   db=(req: express.Request, res: express.Response)=>{
+      let limit=req.query.limit;
+      let offset=req.query.offset;
+      let type=req.query.type;
+      let dbName=req.query.dbName;
+      if(type=='default'){
+         let sql=`select * from  ${dbName} where id>${offset} limit ${limit} `;
+         query(sql, function (err, val, fied) {
+            if (err) {
+               res.json({ error: err })
+            }else{
+               res.json({"error":"","data":val})
+            }
+         })
+  
+      }
+     
 
    }
 
@@ -93,9 +158,6 @@ export class zhihu {
    // }
 
  
-list_db=(req: express.Request, res: express.Response)=>{
-   
-}
 
 
 
