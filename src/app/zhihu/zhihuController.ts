@@ -110,6 +110,9 @@ export class zhihu {
       let rangeStr = "";   // 查找范围sql字符串
       let order = "";        // 排序sql字符串
 
+     console.log(req.body);
+
+
       switch (type) {
          case "default":
             order = "";
@@ -190,7 +193,7 @@ export class zhihu {
    db_count = (req: express.Request, res: express.Response) => {
 
        let dbName=  req.query.dbName;
-       let sql=`select count(*) from ${dbName}`;
+       let sql=`select count(*) as count from ${dbName} `;
 
        query(sql , function (err, val, fied) {
          if (err) {
