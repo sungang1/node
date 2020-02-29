@@ -11,7 +11,19 @@ export class zhihu {
       let date = new Date(dates);
       return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
    }
+
+
    // 添加表
+
+  /**
+   *   添加数据库表
+   *   
+   *   post
+   *   
+   * 
+   * 
+   */
+   
    list_add_db_table = (req: express.Request, res: express.Response) => {
 
       let name = req.body.name == "" ? "null" : req.body.name;
@@ -32,6 +44,9 @@ export class zhihu {
          }
       })
    }
+
+
+
 
    // 删除表
    list_del_db_table = (req: express.Request, res: express.Response) => {
@@ -79,6 +94,26 @@ export class zhihu {
 
    // 修改表
    list_update_db_table = (req: express.Request, res: express.Response) => {
+
+      let id=req.body.id;
+      let name = req.body.name;
+      let url = req.body.url ;
+      let record_time = this.DateFormat(req.body.record_time);
+      let py_time = this.DateFormat(req.body.py_time);
+      let item_num =  req.body.item_num;
+      let data_table_name = req.body.data_table_name;
+      let comment = req.body.comment;
+      let sql = `update zhihu_table_list set name='${name}', url='${url}',record_time='${record_time}',py_time='${py_time}',item_num='${item_num}',data_table_name='${data_table_name}',comment='${comment}' where id=${id};`;
+ 
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         } else {
+            res.json({ "error": "", "data": val })
+         }
+      })
+
+
 
 
 
