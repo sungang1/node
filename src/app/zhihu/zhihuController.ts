@@ -15,15 +15,15 @@ export class zhihu {
 
    // 添加表
 
-  /**
-   *   添加数据库表
-   *   
-   *   post
-   *   
-   * 
-   * 
-   */
-   
+   /**
+    *   添加数据库表
+    *   
+    *   post
+    *   
+    * 
+    * 
+    */
+
    list_add_db_table = (req: express.Request, res: express.Response) => {
 
       let name = req.body.name == "" ? "null" : req.body.name;
@@ -95,16 +95,16 @@ export class zhihu {
    // 修改表
    list_update_db_table = (req: express.Request, res: express.Response) => {
 
-      let id=req.body.id;
+      let id = req.body.id;
       let name = req.body.name;
-      let url = req.body.url ;
+      let url = req.body.url;
       let record_time = this.DateFormat(req.body.record_time);
       let py_time = this.DateFormat(req.body.py_time);
-      let item_num =  req.body.item_num;
+      let item_num = req.body.item_num;
       let data_table_name = req.body.data_table_name;
       let comment = req.body.comment;
       let sql = `update zhihu_table_list set name='${name}', url='${url}',record_time='${record_time}',py_time='${py_time}',item_num='${item_num}',data_table_name='${data_table_name}',comment='${comment}' where id=${id};`;
- 
+
       query(sql, function (err, val, fied) {
          if (err) {
             res.json({ error: err })
@@ -144,10 +144,6 @@ export class zhihu {
       let range = req.body.range;
       let rangeStr = "";   // 查找范围sql字符串
       let order = "";        // 排序sql字符串
-
-     console.log(req.body);
-
-
       switch (type) {
          case "default":
             order = "";
@@ -227,12 +223,12 @@ export class zhihu {
 
    db_count = (req: express.Request, res: express.Response) => {
 
-       let dbName=  req.query.dbName;
-       let sql=`select count(*) as count from ${dbName} `;
+      let dbName = req.query.dbName;
+      let sql = `select count(*) as count from ${dbName} `;
 
-       query(sql , function (err, val, fied) {
+      query(sql, function (err, val, fied) {
          if (err) {
-            res.json({ error: err }) 
+            res.json({ error: err })
          } else {
             res.json({ "error": "", "data": val })
          }
@@ -240,9 +236,67 @@ export class zhihu {
    }
 
 
+   // 标记阅读位置
+   mark_position = (req: express.Request, res: express.Response) => {
+      let dbName = req.body.dbName;
+      let last_read = req.body.last_read;
+      let sql = `update zhihu_table_list set last_read=${last_read} where data_table_name='${dbName}';`;
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+
+         } else {
+            res.json({ "error": "", "data": val })
+
+         }
+      })
+   }
+
+   // 获取标记位置
+   get_mark_id = (req: express.Request, res: express.Response) => {
+      let dbName = req.query.dbName;
+      let sql = `select last_read from zhihu_table_list where data_table_name='${dbName}'; `
+
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         } else {
+            res.json({ "error": "", "data": val })
+         }
+      })
+   }
 
 
+   get_mark_id_content = (req: express.Request, res: express.Response) => {
+      let dbName = req.query.dbName;
+      let id = req.query.id;
 
+      let sql = `select * from ${dbName} where id=${id};`
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         } else {
+            res.json({ "error": "", "data": val })
+         }
+      })
+   }
+
+
+   skip_mark_id = (req: express.Request, res: express.Response) => {
+      let id = req.body.id;
+      let dbName = req.body.dbName;
+      let limit = req.body.limit;
+
+      let sql = `select * from ${dbName} where id>=${id} limit ${limit};`;
+      query(sql, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         } else {
+            res.json({ "error": "", "data": val })
+         }
+      })
+
+   }
 
 
    test = (req: express.Request, res: express.Response) => {
