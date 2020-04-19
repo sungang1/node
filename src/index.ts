@@ -52,7 +52,7 @@ console.log("Node app is running at localhost:" + port2);
 
 
 var app = express();
-var port = process.env.PORT || 8098; // 444
+var port = process.env.PORT || 80; // 444
 var cookieParser = require('cookie-parser');
 app.set("port", port);
 app.use(compression());
