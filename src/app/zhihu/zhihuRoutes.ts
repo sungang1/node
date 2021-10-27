@@ -36,6 +36,11 @@ export class  zhihuRoutes {
      router.get('/get_mark_id_content',controller.get_mark_id_content); // 获取单条数据内容
 
      router.post('/skip_mark_id',controller.skip_mark_id); // 跳转到标记的数据
+
+     router.get('/getPix',controller.getPix); // 获取单条数据内容
         return router;
-    }
+    };
+   
+
+
 }

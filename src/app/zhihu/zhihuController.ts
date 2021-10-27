@@ -316,7 +316,39 @@ export class zhihu {
 
 
 
+   getPix = (req: express.Request, res: express.Response) => {
+      let sqlStr = "SELECT   url,id from  pixabay where download=0 limit 1";
 
+      query(sqlStr, function (err, val, fied) {
+         if (err) {
+            res.json({ error: err })
+         } else {
+
+            console.log(val);
+            console.log(val[0].id)
+            let sql2 = `update pixabay set download=1 ,downloaddate=now(),device='1-办公室' where id=${val[0].id}`;
+            query(sql2, function (err2, val2, fied2) {
+                if(err2){
+               
+                    
+                  res.json({ error: err2 })
+               
+                     console.log(err2);
+
+                }else{
+                  console.log("测试");
+
+                  res.json({url:val[0].url,id:val[0].id})
+
+                }
+              
+            })
+
+         }
+      })
+
+
+   }
 
 
 

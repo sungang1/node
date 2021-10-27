@@ -1,15 +1,14 @@
  
 import express = require("express");
+import { youtubeRoutes } from "./youtube/youtubeRoutes";
  
-import { InitRoutes} from './Init/InitRoutes';
-import {classRoutes} from './class/classRoutes';
+ 
 import {zhihuRoutes} from './zhihu/zhihuRoutes';
 
 
 var app = express.Router();
 
-app.use('/my',new  InitRoutes().routes);
-app.use('/class',new classRoutes().routes)
+ 
 app.use('/zhihu',new zhihuRoutes().routes)
-
+app.use('/youtube',new youtubeRoutes().routes)
 export { app as BaseRoutes }
