@@ -17,6 +17,8 @@ export class  youtubeRoutes {
      router.get('/getVideoInform',controller.getVideoInform); // 获取单条数据内容
      
     router.post('/downloadYoutube',controller.downloadYoutube);
+
+    router.post("/fileSize",controller.fileSize);
         return router;
     };
 
