@@ -45,7 +45,7 @@
     "live-server": "1.1.0",
     "method-override": "^2.3.5",
     "mongojs": "^2.2.2",
-    "mongoose": "^4.3.4",
+    "mongoose": "^4.13.21",
     "nodemon": "^1.19.4",
     "rimraf": "2.5.4",
     "uglify-js": "^2.6.2",
